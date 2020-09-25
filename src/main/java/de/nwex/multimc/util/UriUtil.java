@@ -13,16 +13,16 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class UriUtil {
-    public Map<String, List<String>> splitQuery(URI url) {
+    public static Map<String, List<String>> splitQuery(URI url) {
         if (Strings.isNullOrEmpty(url.getQuery())) {
             return Collections.emptyMap();
         }
         return Arrays.stream(url.getQuery().split("&"))
-            .map(this::splitQueryParameter)
+            .map(UriUtil::splitQueryParameter)
             .collect(Collectors.groupingBy(SimpleImmutableEntry::getKey, LinkedHashMap::new, Collectors.mapping(Map.Entry::getValue, Collectors.toList())));
     }
 
-    public SimpleImmutableEntry<String, String> splitQueryParameter(String it) {
+    public static SimpleImmutableEntry<String, String> splitQueryParameter(String it) {
         final int idx = it.indexOf("=");
         final String key = idx > 0 ? it.substring(0, idx) : it;
         final String value = idx > 0 && it.length() > idx + 1 ? it.substring(idx + 1) : null;
