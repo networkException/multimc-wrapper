@@ -19,9 +19,9 @@ public class Main {
                 try {
                     String url = path.getAnnotation(Path.class).value();
                     server.createContext(url, (HttpHandler) path.getConstructors()[0].newInstance());
-                    System.out.printf("Path '%s' initialised at '%s'", path.getName(), url);
+                    System.out.printf("Path '%s' initialised at '%s'\n", path.getName(), url);
                 } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-                    System.out.printf("Path '%s' could not be initialized", path.getName());
+                    System.out.printf("Path '%s' could not be initialized\n", path.getName());
                 }
             });
 
