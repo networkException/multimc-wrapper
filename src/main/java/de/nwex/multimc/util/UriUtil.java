@@ -7,19 +7,17 @@ import java.nio.charset.StandardCharsets;
 import java.util.AbstractMap.SimpleImmutableEntry;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class UriUtil {
-    public static Map<String, List<String>> splitQuery(URI url) {
+    public static Map<String, String> splitQuery(URI url) {
         if (Strings.isNullOrEmpty(url.getQuery())) {
             return Collections.emptyMap();
         }
         return Arrays.stream(url.getQuery().split("&"))
             .map(UriUtil::splitQueryParameter)
-            .collect(Collectors.groupingBy(SimpleImmutableEntry::getKey, LinkedHashMap::new, Collectors.mapping(Map.Entry::getValue, Collectors.toList())));
+            .collect(Collectors.toMap(SimpleImmutableEntry::getKey, SimpleImmutableEntry::getValue));
     }
 
     public static SimpleImmutableEntry<String, String> splitQueryParameter(String it) {
