@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+group 'de.nwex'
+version '0.0.1'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile group: 'club.minnced', name: 'java-discord-rpc', version: '2.0.2'
+    compile group: 'org.reflections', name: 'reflections', version: '0.9.10'
+    compile group: 'org.json', name: 'json', version: '+'
+}
