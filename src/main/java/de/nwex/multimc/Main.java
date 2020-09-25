@@ -3,12 +3,15 @@ package de.nwex.multimc;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import de.nwex.multimc.annotations.Path;
+import de.nwex.multimc.discord.Presence;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.InetSocketAddress;
 import org.reflections.Reflections;
 
 public class Main {
+
+    private static Presence presence;
 
     public static void main(String[] args) throws IOException {
         HttpServer server = HttpServer.create(new InetSocketAddress(20240), 0);
@@ -27,5 +30,11 @@ public class Main {
 
         server.setExecutor(null);
         server.start();
+
+        presence = new Presence();
+    }
+
+    public static Presence getPresence() {
+        return presence;
     }
 }
