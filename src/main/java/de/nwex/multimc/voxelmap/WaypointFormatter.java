@@ -1,16 +1,15 @@
 package de.nwex.multimc.voxelmap;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 public class WaypointFormatter {
 
-    public static String format(String input) {
+    public static List<String> format(List<String> input) {
         List<String> out = new ArrayList<>();
 
-        Arrays.stream(input.split("\n")).forEach(line -> {
+        input.forEach(line -> {
             if(line.startsWith("name:[")) {
                 Optional<WaypointType> optional = WaypointType.list()
                     .stream()
@@ -32,6 +31,6 @@ public class WaypointFormatter {
             }
         });
 
-        return String.join("\n", out);
+        return out;
     }
 }
