@@ -31,6 +31,8 @@ public class Presence {
     }
 
     public void update(String details) {
+        System.out.println("Updated presence to '" + details + "'");
+
         DiscordRichPresence updated = new DiscordRichPresence();
         updated.startTimestamp = System.currentTimeMillis() / 1000;
         updated.details = details;
