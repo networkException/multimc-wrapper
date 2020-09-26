@@ -23,7 +23,7 @@ public class Presence {
             }
         }, "RPC-Callback-Handler").start();
 
-        System.out.println("Started Presence");
+        System.out.println("Started presence");
     }
 
     public void clear() {
